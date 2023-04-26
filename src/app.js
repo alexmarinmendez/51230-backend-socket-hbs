@@ -17,11 +17,13 @@ app.use('/', routerViews)
 let messages = []
 
 io.on('connection', socket => {
-    console.log(`Cliente socket ${socket.id} conectado`)
+    // console.log(`Cliente socket ${socket.id} conectado`)
+    io.emit('logs', messages)
+    socket.broadcast.emit('newUser')
     socket.on('message', data => {
         messages.push(data)
         // console.log(messages)
-        io.emit('logs', messages)   //emite a todos los clientes conectados
+         io.emit('logs', messages)   //emite a todos los clientes conectados
         // socket.emit('logs', messages)   //emite solo al cliente quien envió data
     })
 })

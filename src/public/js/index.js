@@ -36,6 +36,8 @@ Swal.fire({
         // console.log(messages)
         messagesLog.innerHTML = messages
     })
+
+    socket.on('newUser', () => alert('Nuevo usuario conectado!'))
 })
 
 
